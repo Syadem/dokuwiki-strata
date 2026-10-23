@@ -5,7 +5,8 @@
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Brend Wanders <b.wanders@utwente.nl>
  */
-use dokuwiki\Extension\Event; 
+use dokuwiki\Extension\Event;
+use dokuwiki\Utf8\Conversion;
 
 if(!defined('DOKU_INC')) die('Meh.');
 
@@ -128,7 +129,7 @@ class syntax_plugin_strata_select extends DokuWiki_Syntax_Plugin {
             foreach($result['fields'] as $i=>$f) {
                 $var = $f['variable'];
                 if(!in_array($var, $variables)) {
-                    $this->helper->_fail(sprintf($this->helper->getLang('error_query_unknownselect'),utf8_tohtml(hsc($var))));
+                    $this->helper->_fail(sprintf($this->helper->getLang('error_query_unknownselect'),Conversion::toHtml(hsc($var))));
                 }
 
                 if(empty($f['type'])) {
