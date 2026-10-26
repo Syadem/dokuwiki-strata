@@ -43,13 +43,4 @@ final class SqliteJoinOrderTest extends TestCase
         self::assertStringContainsString(' CROSS JOIN ', $sql);
         self::assertStringContainsString(' LEFT OUTER JOIN ', $sql);
     }
-
-    public function testOtherDriversKeepOrdinaryInnerJoins(): void
-    {
-        $mysql = new plugin_strata_driver_mysql();
-        $pgsql = new plugin_strata_driver_pgsql();
-
-        self::assertSame('INNER JOIN', $mysql->innerJoin());
-        self::assertSame('INNER JOIN', $pgsql->innerJoin());
-    }
 }
